@@ -2,7 +2,6 @@ package io.bendystraws.reducer;
 
 import io.bendystraws.action.Action;
 import io.bendystraws.test.TestAction;
-import io.bendystraws.test.TestPayload;
 import io.bendystraws.test.TestState;
 import org.junit.Before;
 import org.junit.Test;

@@ -41,7 +41,7 @@ public class StoreTest {
         when(reducer.reduce(null, null)).thenReturn(initialState);
         when(reducer.reduce(initialState, action)).thenReturn(newState);
 
-        subject = new Store(reducer);
+        subject = new Store<>(reducer);
     }
 
     @Test

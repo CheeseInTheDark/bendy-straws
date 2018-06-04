@@ -1,6 +1,6 @@
 package io.bendystraws.action;
 
-import io.bendystraws.test.TestAction;
+import io.bendystraws.test.TestActionWithPayload;
 import io.bendystraws.test.TestPayload;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,11 +24,5 @@ public class ActionTest {
     @Test
     public void returnsItsPayload() {
         assertThat(subject.getPayload(), is(testPayload));
-    }
-
-    private class TestActionWithPayload extends Action<TestPayload> {
-        public TestActionWithPayload(TestPayload payload) {
-            super(payload);
-        }
     }
 }
