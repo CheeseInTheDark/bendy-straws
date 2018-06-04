@@ -3,6 +3,10 @@ package io.bendystraws.action;
 public abstract class Action<P> {
     private final P payload;
 
+    public Action() {
+        this.payload = null;
+    }
+
     public Action(P payload) {
         this.payload = payload;
     }

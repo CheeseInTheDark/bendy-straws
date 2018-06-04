@@ -2,6 +2,7 @@ package io.bendystraws.store;
 
 import io.bendystraws.action.Action;
 import io.bendystraws.reducer.Reducer;
+import io.bendystraws.test.TestState;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -95,5 +96,4 @@ public class StoreTest {
         }
     };
 
-    private class TestState {}
 }
