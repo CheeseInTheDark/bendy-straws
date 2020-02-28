@@ -15,41 +15,40 @@ public class StateSegmentReducerTest {
 
     private Reducer<TestParentState> subject;
 
-    @Mock
-    private TestAction testAction;
-
-    @Mock
-    private StateSegment<TestParentState, TestState> stateSegment;
-
-    @Mock
-    private TestState extractedSegment;
-
-    @Mock
-    private TestState newSegment;
-
-    @Mock
-    private TestParentState parentState;
-
-    @Mock
-    private TestParentState newParentState;
-
-    @Mock
-    private Reducer<TestState> underlyingReducer;
+    @Mock private TestAction testAction;
+    @Mock private StateSegment<TestParentState, TestState> stateSegment;
+    @Mock private TestState extractedSegment;
+    @Mock private TestState updatedSegment;
+    @Mock private TestState newSegment;
+    @Mock private TestParentState newParentState;
+    @Mock private TestParentState parentState;
+    @Mock private TestParentState updatedParentState;
+    @Mock private Reducer<TestState> underlyingReducer;
 
     @Before
     public void setup() {
         initMocks(this);
 
         when(stateSegment.extractFrom(parentState)).thenReturn(extractedSegment);
-        when(stateSegment.insert(newSegment, parentState)).thenReturn(newParentState);
-        when(underlyingReducer.reduce(extractedSegment, testAction)).thenReturn(newSegment);
+        when(stateSegment.insert(updatedSegment, parentState)).thenReturn(updatedParentState);
+        when(underlyingReducer.reduce(extractedSegment, testAction)).thenReturn(updatedSegment);
 
-        subject = new StateSegmentReducer(stateSegment, underlyingReducer);
+        when(stateSegment.insertIntoNewParent(newSegment)).thenReturn(newParentState);
+        when(underlyingReducer.reduce(null, testAction)).thenReturn(newSegment);
+
+        subject = new StateSegmentReducer<>(stateSegment, underlyingReducer);
     }
 
     @Test
     public void returnsStateFromUnderlyingReducer() {
         TestParentState newState = subject.reduce(parentState, testAction);
+
+        assertThat(newState, is(updatedParentState));
+    }
+
+    @Test
+    public void returnsNewStateObjectWhenPreviousStateIsNull() {
+        TestParentState newState = subject.reduce(null, testAction);
 
         assertThat(newState, is(newParentState));
     }

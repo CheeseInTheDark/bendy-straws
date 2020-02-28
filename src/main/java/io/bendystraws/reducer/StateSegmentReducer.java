@@ -13,6 +13,10 @@ public class StateSegmentReducer<P, S> implements Reducer<P> {
 
     @Override
     public P reduce(P previousState, Action<?> action) {
+        if (previousState == null) {
+            return stateSegment.insertIntoNewParent(reducerForSegment.reduce(null, action));
+        }
+
         S segmentedState = stateSegment.extractFrom(previousState);
         S newSegmentedState = reducerForSegment.reduce(segmentedState, action);
         return stateSegment.insert(newSegmentedState, previousState);

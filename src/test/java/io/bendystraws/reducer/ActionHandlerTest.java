@@ -1,6 +1,7 @@
 package io.bendystraws.reducer;
 
 import io.bendystraws.action.Action;
+import io.bendystraws.test.TestAction;
 import io.bendystraws.test.TestActionWithPayload;
 import io.bendystraws.test.TestState;
 import org.junit.Before;
@@ -23,7 +24,7 @@ public class ActionHandlerTest {
     private NonapplicableAction nonapplicableAction;
 
     @Mock
-    private ActionHandler<TestState, TestActionWithPayload>.Implementation actionHandlerForType;
+    private ActionHandler.Implementation<TestState, TestActionWithPayload> actionHandlerForType;
 
     @Mock
     private TestState previousState;
