@@ -15,6 +15,10 @@ public class LeafReducer<S> implements Reducer<S> {
     public S reduce(S previousState, Action<?> action) {
         if (action == null) { return defaultState; }
 
-        return actionHandlers.get(action.getClass()).reduce(previousState, action);
+        ActionHandler<S, ? extends Action<?>> handler = actionHandlers.get(action.getClass());
+
+        if (handler == null) { return previousState; }
+
+        return handler.reduce(previousState, action);
     }
 }

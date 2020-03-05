@@ -9,8 +9,8 @@ import static java.util.Arrays.asList;
 public class CombinedReducers<S> implements Reducer<S> {
     private List<Reducer<S>> reducers;
 
-    public CombinedReducers(Reducer<S>... reducers) {
-        this.reducers = asList(reducers);
+    public CombinedReducers(List<Reducer<S>> reducers) {
+        this.reducers = reducers;
     }
 
     @Override

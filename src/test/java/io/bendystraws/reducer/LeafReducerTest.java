@@ -70,5 +70,14 @@ public class LeafReducerTest {
         assertThat(state, is(defaultState));
     }
 
-    private class SecondTestAction extends Action<Void> {}
+    @Test
+    public void returnsSameStateWhenNoActionHandlerAppliesToGivenAction() {
+        TestState state = subject.reduce(previousState, new NonapplicableAction());
+
+        assertThat(state, is(previousState));
+    }
+
+    private static class SecondTestAction extends Action<Void> {}
+
+    private static class NonapplicableAction extends Action<Void> {}
 }

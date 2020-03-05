@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.when;
@@ -42,7 +43,7 @@ public class CombinedReducersTest {
 
     @Test
     public void returnsStateFromTwoCombinedReducers() {
-        subject = new CombinedReducers(firstReducer, secondReducer);
+        subject = new CombinedReducers<>(asList(firstReducer, secondReducer));
 
         TestState newState = subject.reduce(state, action);
 
