@@ -4,13 +4,15 @@ import io.bendystraws.action.Action;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
-
 public class CombinedReducers<S> implements Reducer<S> {
     private List<Reducer<S>> reducers;
 
     public CombinedReducers(List<Reducer<S>> reducers) {
         this.reducers = reducers;
+    }
+
+    public static <S> Reducer<S> combine(List<Reducer<S>> reducers) {
+        return new CombinedReducers<>(reducers);
     }
 
     @Override

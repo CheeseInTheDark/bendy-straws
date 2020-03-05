@@ -36,7 +36,7 @@ public class StateSegmentReducerTest {
         when(stateSegment.insertIntoNewParent(newSegment)).thenReturn(newParentState);
         when(underlyingReducer.reduce(null, testAction)).thenReturn(newSegment);
 
-        subject = new StateSegmentReducer<>(stateSegment, underlyingReducer);
+        subject = StateSegmentReducer.segment(stateSegment, underlyingReducer);
     }
 
     @Test

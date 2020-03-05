@@ -11,6 +11,10 @@ public class LeafReducer<S> implements Reducer<S> {
         this.defaultState = defaultState;
     }
 
+    public static <S> Reducer<S> reducer(ActionMap<S> actionHandlers, S defaultState) {
+        return new LeafReducer<>(actionHandlers, defaultState);
+    }
+
     @Override
     public S reduce(S previousState, Action<?> action) {
         if (action == null) { return defaultState; }

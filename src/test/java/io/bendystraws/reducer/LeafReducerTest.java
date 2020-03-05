@@ -46,7 +46,7 @@ public class LeafReducerTest {
 
         actionMap = new ActionMap<>(asList(firstHandler, secondHandler));
 
-        subject = new LeafReducer<>(actionMap, defaultState);
+        subject = LeafReducer.reducer(actionMap, defaultState);
     }
 
     @Test

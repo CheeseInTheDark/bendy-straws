@@ -5,6 +5,11 @@ import io.bendystraws.reducer.*;
 import io.bendystraws.store.Store;
 import org.junit.Test;
 
+import static io.bendystraws.reducer.ActionHandler.handlerFor;
+import static io.bendystraws.reducer.ActionMap.handlers;
+import static io.bendystraws.reducer.CombinedReducers.combine;
+import static io.bendystraws.reducer.LeafReducer.reducer;
+import static io.bendystraws.reducer.StateSegmentReducer.segment;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -74,24 +79,24 @@ public class SegmentedStateTest {
     @Test
     public void stateCanBeSegmented() {
         Store<State> subject = new Store<>(
-                new CombinedReducers<>(asList(
-                        new StateSegmentReducer<>(new FirstStateSegment(), new LeafReducer<>(
-                                new ActionMap<>(singletonList(
-                                        new ActionHandler<>(FirstAction.class, (previousState, action) -> {
-                                            previousState.value = "First";
-                                            return previousState;
-                                        })
-                                )), new FirstSegment()
-                        )),
-                        new StateSegmentReducer<>(new SecondStateSegment(), new LeafReducer<>(
-                                new ActionMap<>(singletonList(
-                                        new ActionHandler<>(SecondAction.class, (previousState, action) -> {
-                                            previousState.value = "Second";
-                                            return previousState;
-                                        })
-                                )), new SecondSegment()
-                        )))
-                ));
+            combine(asList(
+               segment(new FirstStateSegment(), reducer(
+                   handlers(singletonList(
+                       handlerFor(FirstAction.class, (previousState, action) -> {
+                           previousState.value = "First";
+                           return previousState;
+                       })
+                   )), new FirstSegment()
+                )),
+                segment(new SecondStateSegment(), reducer(
+                    handlers(singletonList(
+                        handlerFor(SecondAction.class, (previousState, action) -> {
+                            previousState.value = "Second";
+                            return previousState;
+                        })
+                    )), new SecondSegment()
+                )))
+            ));
 
         assertThat(subject.getState().firstSegment.value, is(nullValue()));
         assertThat(subject.getState().secondSegment.value, is(nullValue()));

@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import static io.bendystraws.reducer.CombinedReducers.combine;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -43,12 +44,10 @@ public class CombinedReducersTest {
 
     @Test
     public void returnsStateFromTwoCombinedReducers() {
-        subject = new CombinedReducers<>(asList(firstReducer, secondReducer));
+        subject = CombinedReducers.combine(asList(firstReducer, secondReducer));
 
         TestState newState = subject.reduce(state, action);
 
         assertThat(newState, is(stateFromSecondReducer));
     }
-
-
 }

@@ -31,7 +31,7 @@ public class ActionHandlerTest {
     public void setup() {
         initMocks(this);
 
-        subject = new ActionHandler<>(TestActionWithPayload.class, actionHandlerForType);
+        subject = ActionHandler.handlerFor(TestActionWithPayload.class, actionHandlerForType);
 
         when(actionHandlerForType.reduce(previousState, testAction)).thenReturn(stateFromHandlerImplementation);
     }

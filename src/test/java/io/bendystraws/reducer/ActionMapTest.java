@@ -27,7 +27,7 @@ public class ActionMapTest {
         when(firstActionHandler.getActionClass()).thenReturn(TestAction.class);
         when(secondActionHandler.getActionClass()).thenReturn(TestActionWithPayload.class);
 
-        subject = new ActionMap<>(asList(firstActionHandler, secondActionHandler));
+        subject = ActionMap.handlers(asList(firstActionHandler, secondActionHandler));
     }
 
     @Test

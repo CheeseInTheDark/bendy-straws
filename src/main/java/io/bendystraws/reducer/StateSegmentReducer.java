@@ -11,6 +11,10 @@ public class StateSegmentReducer<P, S> implements Reducer<P> {
         this.reducerForSegment = reducerForSegment;
     }
 
+    public static <P, S> Reducer<P> segment(StateSegment<P, S> stateSegment, Reducer<S> reducerForSegment) {
+        return new StateSegmentReducer<>(stateSegment, reducerForSegment);
+    }
+
     @Override
     public P reduce(P previousState, Action<?> action) {
         if (previousState == null) {

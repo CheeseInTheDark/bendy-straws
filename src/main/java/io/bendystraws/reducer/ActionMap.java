@@ -18,6 +18,10 @@ public class ActionMap<S> {
         }
     }
 
+    public static <S> ActionMap<S> handlers(List<ActionHandler<S, ? extends Action<?>>> handlers) {
+        return new ActionMap<>(handlers);
+    }
+
     public ActionHandler<S, ? extends Action> get(Class<? extends Action> actionClass) {
         return underlyingMap.get(actionClass);
     }

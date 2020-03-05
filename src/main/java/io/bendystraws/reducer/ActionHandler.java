@@ -11,6 +11,10 @@ public class ActionHandler<S, A extends Action<?>> implements Reducer<S> {
         this.actionHandlerForType = actionHandlerForType;
     }
 
+    public static <S, A extends Action<?>> ActionHandler<S, A> handlerFor(Class<A> actionClass, Implementation<S, A> actionHandlerForType) {
+        return new ActionHandler<>(actionClass, actionHandlerForType);
+    }
+
     @Override
     public S reduce(S previousState, Action<?> action) {
         if (actionClass.isInstance(action)) {
