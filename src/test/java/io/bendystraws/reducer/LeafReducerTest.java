@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -18,11 +19,9 @@ public class LeafReducerTest {
 
     private Reducer<TestState> subject;
 
-    @Mock
-    private ActionHandler<TestState, TestAction> firstHandler;
+    @Mock private ActionHandler<TestState, TestAction> firstHandler;
 
-    @Mock
-    private ActionHandler<TestState, SecondTestAction> secondHandler;
+    @Mock private ActionHandler<TestState, SecondTestAction> secondHandler;
 
     private ActionMap<TestState> actionMap;
 
@@ -37,17 +36,17 @@ public class LeafReducerTest {
     public void setup() {
         initMocks(this);
 
-        actionMap = new ActionMap<>();
-        actionMap.put(TestAction.class, firstHandler);
-        actionMap.put(SecondTestAction.class, secondHandler);
-
-        subject = new LeafReducer<>(actionMap, defaultState);
-
+        when(firstHandler.getActionClass()).thenReturn(TestAction.class);
         when(firstHandler.reduce(eq(previousState), any(TestAction.class))).thenReturn(stateFromFirstHandler);
         when(firstHandler.reduce(eq(previousState), any(SecondTestAction.class))).thenReturn(previousState);
 
+        when(secondHandler.getActionClass()).thenReturn(SecondTestAction.class);
         when(secondHandler.reduce(eq(previousState), any(SecondTestAction.class))).thenReturn(stateFromSecondHandler);
         when(secondHandler.reduce(eq(previousState), any(TestAction.class))).thenReturn(previousState);
+
+        actionMap = new ActionMap<>(asList(firstHandler, secondHandler));
+
+        subject = new LeafReducer<>(actionMap, defaultState);
     }
 
     @Test

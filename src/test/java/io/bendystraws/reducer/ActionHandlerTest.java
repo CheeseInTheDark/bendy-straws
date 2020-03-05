@@ -17,20 +17,15 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class ActionHandlerTest {
     private ActionHandler<TestState, TestActionWithPayload> subject;
 
-    @Mock
-    private TestActionWithPayload testAction;
+    @Mock private TestActionWithPayload testAction;
 
-    @Mock
-    private NonapplicableAction nonapplicableAction;
+    @Mock private NonapplicableAction nonapplicableAction;
 
-    @Mock
-    private ActionHandler.Implementation<TestState, TestActionWithPayload> actionHandlerForType;
+    @Mock private ActionHandler.Implementation<TestState, TestActionWithPayload> actionHandlerForType;
 
-    @Mock
-    private TestState previousState;
+    @Mock private TestState previousState;
 
-    @Mock
-    private TestState stateFromHandlerImplementation;
+    @Mock private TestState stateFromHandlerImplementation;
 
     @Before
     public void setup() {
@@ -53,6 +48,11 @@ public class ActionHandlerTest {
         TestState newState = subject.reduce(previousState, testAction);
 
         assertThat(newState, is(stateFromHandlerImplementation));
+    }
+
+    @Test
+    public void returnsActionTypeWhichItAppliesTo() {
+        assertThat(subject.getActionClass(), org.hamcrest.CoreMatchers.<Class<TestActionWithPayload>>is(TestActionWithPayload.class));
     }
 
     private class NonapplicableAction extends Action<Void> {}

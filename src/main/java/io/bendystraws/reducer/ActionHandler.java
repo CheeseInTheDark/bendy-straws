@@ -19,7 +19,11 @@ public class ActionHandler<S, A extends Action<?>> implements Reducer<S> {
 
         return previousState;
     }
-    
+
+    public Class<A> getActionClass() {
+        return actionClass;
+    }
+
     public interface Implementation<S, A> {
         S reduce(S previousState, A action);
     }

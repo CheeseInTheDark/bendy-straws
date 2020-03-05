@@ -13,8 +13,7 @@ public class ActionTest {
 
     private Action<TestPayload> subject;
 
-    @Mock
-    private TestPayload testPayload;
+    @Mock private TestPayload testPayload;
 
     @Before
     public void setup() {

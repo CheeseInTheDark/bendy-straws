@@ -22,17 +22,13 @@ public class StoreTest {
 
     private TestState newState = new TestState();
 
-    @Mock
-    private Reducer<TestState> reducer;
+    @Mock private Reducer<TestState> reducer;
 
-    @Mock
-    private Action<?> action;
+    @Mock private Action<?> action;
 
-    @Mock
-    private Subscription firstSubscriber;
+    @Mock private Subscription firstSubscriber;
 
-    @Mock
-    private Subscription secondSubscriber;
+    @Mock private Subscription secondSubscriber;
 
     @Before
     public void setup() {

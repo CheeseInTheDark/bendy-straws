@@ -15,29 +15,21 @@ public class CombinedReducersTest {
 
     private Reducer<TestState> subject;
 
-    @Mock
-    private Reducer<TestState> firstReducer;
+    @Mock private Reducer<TestState> firstReducer;
 
-    @Mock
-    private Reducer<TestState> secondReducer;
+    @Mock private Reducer<TestState> secondReducer;
 
-    @Mock
-    private Reducer<TestState> thirdReducer;
+    @Mock private Reducer<TestState> thirdReducer;
 
-    @Mock
-    private TestState state;
+    @Mock private TestState state;
 
-    @Mock
-    private TestAction action;
+    @Mock private TestAction action;
 
-    @Mock
-    private TestState stateFromFirstReducer;
+    @Mock private TestState stateFromFirstReducer;
 
-    @Mock
-    private TestState stateFromSecondReducer;
+    @Mock private TestState stateFromSecondReducer;
 
-    @Mock
-    private TestState stateFromThirdReducer;
+    @Mock private TestState stateFromThirdReducer;
 
     @Before
     public void setup() {
