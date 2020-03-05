@@ -80,13 +80,13 @@ public class SegmentedStateTest {
     public void stateCanBeSegmented() {
         Store<State> subject = new Store<>(
             combine(asList(
-               segment(new FirstStateSegment(), reducer(
-                   handlers(singletonList(
-                       handlerFor(FirstAction.class, (previousState, action) -> {
-                           previousState.value = "First";
-                           return previousState;
-                       })
-                   )), new FirstSegment()
+                segment(new FirstStateSegment(), reducer(
+                    handlers(singletonList(
+                        handlerFor(FirstAction.class, (previousState, action) -> {
+                            previousState.value = "First";
+                            return previousState;
+                        })
+                    )), new FirstSegment()
                 )),
                 segment(new SecondStateSegment(), reducer(
                     handlers(singletonList(
