@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * A Store stores the state of an application, updates it using the {@link Reducer}s
- * it's buitl with when {@link Action}s are dispatched, and notifies subscribers when the state has changed
+ * it's built with when {@link Action}s are dispatched, and notifies subscribers when the state has changed
  *
  * @param <S> The type of the store's state object
  */
