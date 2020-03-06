@@ -12,7 +12,7 @@ import io.bendystraws.action.Action;
  * apply to the it, the state which was passed in is returned unchanged.
  *
  * <p>
- *      This class's intended use is to handle actions for one part of
+ *      This class's intended use is to handle actions for leaf nodes of
  *      a larger state tree in conjunction with {@link StateSegmentReducer} and
  *      {@link CombinedReducers}, but it can also be used in simple applications
  *      with a small enough state that it does not require a tree structure

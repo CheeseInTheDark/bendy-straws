@@ -1,7 +1,8 @@
 package io.bendystraws.reducer;
 
 /**
- * Informs a {@link StateSegmentReducer} how a piece of a larger state object fits into that larger state object
+ * Informs a {@link StateSegmentReducer} how to extract and reinsert
+ * a piece of a larger state object
  *
  * @param <P> The type of the parent state
  * @param <S> The type of the child state used in this StateSegment
@@ -9,7 +10,7 @@ package io.bendystraws.reducer;
 public interface StateSegment<P, S> {
 
     /**
-     * Returns a smaller piece of a parent state object
+     * Returns a child of a parent state object
      *
      * @param parentState the parent state object
      * @return the child state

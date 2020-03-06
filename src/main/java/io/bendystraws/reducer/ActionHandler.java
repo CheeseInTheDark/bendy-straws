@@ -10,7 +10,7 @@ import io.bendystraws.action.Action;
  * {@link Reducer} it calls on will always receive the {@link Action} type it's
  * expecting, preventing the need for manual casting and type-checking.
  *
- * {@see ActionMap}
+ * See also {@link ActionMap}
  *
  * @param <S> The type of the state object that this handler deals with
  * @param <A> The {@link Action} type this handler deals with
@@ -44,7 +44,7 @@ public class ActionHandler<S, A extends Action<?>> implements Reducer<S> {
      * Updates the given state if the action applies, otherwise returns the same state
      *
      * @param previousState the previous state
-     * @param action the action that is causing the state to be updated
+     * @param action the {@link Action} that is causing the state to be updated
      * @return the updated state, or the same state if the action does not apply to this {@link ActionHandler}
      */
     @Override
@@ -67,7 +67,7 @@ public class ActionHandler<S, A extends Action<?>> implements Reducer<S> {
      * Defines how the state is updated when an {@link Action} applies to an {@link ActionHandler} associated
      * with this Implementation
      *
-     * @param <S> The type of the state object that this Implementation deals with
+     * @param <S> The type of the state object that this {@link Implementation} deals with
      * @param <A> The {@link Action} type this {@link Implementation} deals with
      */
     public interface Implementation<S, A> {
